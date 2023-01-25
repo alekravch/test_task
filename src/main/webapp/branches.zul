@@ -1,0 +1,39 @@
+<?variable-resolver class="org.zkoss.zkplus.jndi.JndiVariableResolver" ?>
+<zk>
+	<style src="/css/style.css"/>
+	
+	
+	<window id="win" title="Филиалы" width="900px" border="normal" style="margin-right: 30px;"
+		apply="${BranchListController}">
+		
+		<navbar>
+			<navitem label="Адреса" href="addresses.zul"/>
+			<navitem label="Компании" href="companies.zul"/>
+		</navbar>
+		
+			
+		<grid model="${win$composer.branchesModel}" >
+			<auxhead>
+				<auxheader label="Филиалы" align="center" colspan="6" />
+			</auxhead>
+			<columns>
+				<column label="Название" align="center" />
+				<column label="Индекс" align="center" />
+				<column label="Город" align="center" />
+				<column label="Улица" align="center" />
+				<column label="Дом" align="center"  />
+				<column label="Компания" align="center"  />
+			</columns>
+			<template name="model">
+				<row>
+						<label value="${each.name}" />
+						<label value="${each.address.index}" />
+						<label value="${each.address.city}" />
+						<label value="${each.address.street}" />
+						<label value="${each.address.buildingNo}" />
+						<label value="${each.company.desc}" />
+				</row>
+			</template>
+		</grid>
+	</window>
+</zk>

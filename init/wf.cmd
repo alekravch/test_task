@@ -1,0 +1,1 @@
+jboss-cli.bat --connect -file=ds.wf

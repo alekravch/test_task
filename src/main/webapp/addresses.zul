@@ -1,0 +1,37 @@
+<?variable-resolver class="org.zkoss.zkplus.jndi.JndiVariableResolver" ?>
+<zk>
+	<style src="/css/style.css"/>
+	
+	<window id="win" title="Адреса" width="900px" border="normal" style="margin-right: 30px;"
+		apply="${AddressListController}">
+		
+		<navbar>
+			<navitem label="Компании" href="companies.zul"/>
+			<navitem label="Филиалы" href="branches.zul"/>
+		</navbar>
+			
+		<grid model="${win$composer.addressesModel}" >
+			<auxhead>
+				<auxheader label="Адреса" align="center" colspan="5" />
+			</auxhead>
+			<columns>
+				<column label="Индекс" align="center" sort="auto(index)" />
+				<column label="Город" align="center" sort="auto(city)" />
+				<column label="Улица" align="center" sort="auto(street)" />
+				<column label="Дом" align="center"  sort="auto(buildingNo)"/>
+				<column label="Компания/Филиал" align="center" sort="auto(holderDesc)" />
+			</columns>
+			<template name="model">
+				<row>
+
+					<label value="${each.index}" />
+					<label value="${each.city}" />
+					<label value="${each.street}" />
+					<label value="${each.buildingNo}" />
+					<label value="${each.holderDesc}" />
+					
+				</row>
+			</template>
+		</grid>
+	</window>
+</zk>

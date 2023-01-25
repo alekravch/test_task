@@ -1,0 +1,76 @@
+<?variable-resolver class="org.zkoss.zkplus.jndi.JndiVariableResolver" ?>
+<zk>
+	<style src="/css/style.css"/>
+	
+	<window id="win" title="Компании" width="900px" border="normal" style="margin-right: 30px;"
+		apply="${CompanyListController}">
+		
+		<navbar>
+			<navitem label="Адреса" href="addresses.zul"/>
+			<navitem label="Филиалы" href="branches.zul"/>
+		</navbar>
+			
+		<grid model="${win$composer.companiesModel}" >
+			<auxhead>
+				<auxheader />
+				<auxheader label="Компании" align="center" colspan="6" />
+			</auxhead>
+			<columns>
+				<column width="40px" />
+				<column label="Название" align="center" />
+				<column label="Тип" align="center" />
+				<column label="Индекс" align="center" />
+				<column label="Город" align="center" />
+				<column label="Улица" align="center" />
+				<column label="Дом" align="center"  />
+			</columns>
+			<template name="model">
+				<row>
+					<detail>
+						<hlayout sclass="detail">
+							<vlayout>
+								<hlayout sclass="detail-row">
+								
+									<grid emptyMessage="Нет филиалов">
+										<auxhead>
+											<auxheader label="Филиалы компании ${each.name}" align="center" colspan="5" />
+										</auxhead>
+										<columns>
+											<column label="Название" align="center" />
+											<column label="Индекс" align="center" />
+											<column label="Город" align="center" />
+											<column label="Улица" align="center" />
+											<column label="Дом" align="center"  />
+											
+										</columns>
+										<rows>
+											<row forEach="${each.branches}">
+												<label value="${each.name}" />
+												<label value="${each.address.index}" />
+												<label value="${each.address.city}" />
+												<label value="${each.address.street}" />
+												<label value="${each.address.buildingNo}" />
+
+											</row>
+										</rows>
+									</grid>
+									
+
+								</hlayout>
+							</vlayout>
+						</hlayout>
+					</detail>
+<!-- 					<hlayout> -->
+						<label value="${each.name}" />
+						<label value="${each.type}" />
+						<label value="${each.address.index}" />
+						<label value="${each.address.city}" />
+						<label value="${each.address.street}" />
+						<label value="${each.address.buildingNo}" />
+					
+<!--  					</hlayout> -->
+				</row>
+			</template>
+		</grid>
+	</window>
+</zk>
